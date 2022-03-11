@@ -22,3 +22,6 @@ let userSchema = new Schema({
 })
 userSchema.plugin(uniqueValidator, { message: 'Email already in use.' });// use the plugin to control and mesage of unique email.
 module.exports = mongoose.model('User', userSchema);// this line exports this part of our code.
+
+
+
