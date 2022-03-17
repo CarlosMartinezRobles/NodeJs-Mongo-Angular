@@ -1,7 +1,7 @@
 import { Iuser, IuserSignIn } from './../models/iuser';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -40,6 +40,16 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return localStorage.getItem('access_token') !=null ? true : false;
   }
+  getUserProfile(id: string): Observable<any> {
+    let api = `${this.endpoint}/user-profile/${id}`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res: any) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+  }
+
    //  Error function;
   handleError(error: HttpErrorResponse) {
   let msg = '';
