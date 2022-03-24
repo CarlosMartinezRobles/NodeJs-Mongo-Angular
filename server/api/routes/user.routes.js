@@ -12,8 +12,8 @@ router.post("/register",
         check('name')
             .not()
             .isEmpty()
-            .isLength({ min: 3 })
-            .withMessage('Name must be atleast 3 characters long'),
+            .isLength({ min: 3, max: 12})
+            .withMessage('Name must be atleast 3 characters long, and 12 of max'),
         check('email', 'Email is required')
             .not()
             .isEmpty(),
@@ -52,7 +52,7 @@ router.post("/register",
 
 
 // to Sign-in
-router.post("/signin", (req, res, next) => {
+router.post("/sign-in", (req, res, next) => {
     let getUser;
     userSchema.findOne({
         email: req.body.email
