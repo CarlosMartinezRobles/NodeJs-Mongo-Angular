@@ -16,19 +16,20 @@ export class AuthService {
 
   constructor( private http: HttpClient, public router: Router) {/*empty*/ }
 
-  public register (user:Iuser){
-    return this.http.post(`$this.endpoint}//register`, user).pipe(
+  public register (user:Iuser){ 
+    const api= `${this.endpoint}/register`;
+    return this.http.post(api, user).pipe(
     catchError(this.handleError)
     ) 
   };
   
-  public  signIn(userSingIn: IuserSignIn) {
-    return this.http.post<any> (`$this.endpoint}//register`, userSingIn).subscribe((res) => {
+  public  signIn( userSignin: IuserSignIn) {
+    return this.http.post<any>(`$this.endpoint}//register`, userSignin).subscribe((res) => {
       localStorage.setItem('access_token', res.token)
       this.currentUser = res;	
     })
   }
-  getToken() {
+  getToken(): string | null {
     return localStorage.getItem('access_token');
   }
   public doLogout() {//to secure that be a token.
@@ -51,7 +52,7 @@ export class AuthService {
   }
 
    //  Error function;
-  handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse) {
   let msg = '';
     if (error.error instanceof ErrorEvent) {
     // client-side error
