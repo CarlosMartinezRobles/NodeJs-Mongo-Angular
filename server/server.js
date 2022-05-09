@@ -10,9 +10,12 @@ const bodyParser = require('body-parser');
 const logger=require("morgan");
 //database
 const{connect}= require("./api/utils/database/connect");
- //error
- const HTTPSTATUSCODE= require ("./api/utils/httpStatusCode");   
- //port to use server
+// routes
+const user=require("./api/routes/user.routes");
+//error
+
+const HTTPSTATUSCODE= require ("./api/utils/httpStatusCode");   
+//port to use server
 PORT=3000 || 4000;
 
 //use express
@@ -30,9 +33,8 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 // to indicate routes to use
 app.use('/public', express.static('public'));
-
 app.use('/api', api)
-
+app.use('/server/api/routes/user.routes.js')
 //use morgan
  api.use(logger("dev"));
 

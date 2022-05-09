@@ -1,6 +1,6 @@
 import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, RequiredValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public registerForm?: FormGroup;
+  public registerForm!: FormGroup;
 
   constructor( public AuthService: AuthService, public fb: FormBuilder, public router: Router) {
     this.buildForm();

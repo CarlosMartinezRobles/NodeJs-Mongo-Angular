@@ -1,5 +1,6 @@
+
 <div>
-    <form [FormGroup]?= "registerForm" (ngSubmit)="registerUser()">
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <h3>Please sign up</h3>
         <div>
             <label>Name</label>
