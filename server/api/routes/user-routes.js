@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken"); // required jsonwebtoken for using the npm 
 const bcrypt = require("bcrypt");// required bcrypt for using the npm hta.
 const router = express.Router();// required jsonwebtoken for using the function of espress hta.
 const userSchema = require("../models/user.model");// required jsonwebtoken for using the npm hta.
-const authorize = require("../utils/middlewares/auth");// required authorize for using the function .
+const authorize = require("../utils/middlewares/auth.middleware");// required authorize for using the function .
 const { check, validationResult } = require('express-validator');// required express-validator for using the npm hta.
 
 // to Sign-up

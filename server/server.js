@@ -11,7 +11,7 @@ const logger=require("morgan");
 //database
 const{connect}= require("./api/utils/database/connect");
 // routes
-const user=require("./api/routes/user.routes");
+const user=require("./api/routes/user-routes");
 //error
 
 const HTTPSTATUSCODE= require ("./api/utils/httpStatusCode");   
@@ -34,7 +34,7 @@ app.use(cors());
 // to indicate routes to use
 app.use('/public', express.static('public'));
 app.use('/api', api)
-app.use('/server/api/routes/user.routes.js')
+app.use('/server/api/routes/user.routes.js',user)
 //use morgan
  api.use(logger("dev"));
 
