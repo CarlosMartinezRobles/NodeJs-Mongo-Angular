@@ -8,25 +8,25 @@ const { check, validationResult } = require('express-validator');// required exp
 
 // to Sign-up
 router.post("/register",
-    [
-        check('name')
-            .not()
-            .isEmpty()
-            .isLength({ min: 3, max: 12})
-            .withMessage('Name must be atleast 3 characters long, and 12 of max'),
-        check('email', 'Email is required')
-            .not()
-            .isEmpty(),
-        check('password', 'Password should be between 5 to 8 characters long')
-            .not()
-            .isEmpty()
-            .isLength({ min: 5, max: 8 })
-    ],
+[
+    check('name')
+        .not()
+        .isEmpty()
+        .isLength({ min: 3 })
+        .withMessage('Name must be atleast 3 characters long'),
+    check('email', 'Email is required')
+        .not()
+        .isEmpty(),
+    check('password', 'Password should be between 5 to 8 characters long')
+        .not()
+        .isEmpty()
+        .isLength({ min: 5, max: 8 })
+],
     (req, res, next) => {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            return res.status(422).jsonp(errors.array());
+            return res.status(422).json(errors.array());
         }
         else {
             bcrypt.hash(req.body.password, 5).then((hash) => {
@@ -34,7 +34,7 @@ router.post("/register",
                     name: req.body.name,
                     email: req.body.email,
                     password: hash,
-                    emoji: req.body.emoji
+                    
                 });
                 user.save().then((response) => {
                     res.status(201).json({
@@ -49,10 +49,10 @@ router.post("/register",
             });
         }
     });
-
+  
 
 // to Sign-in
-router.post("/sign-in", (req, res, next) => {
+router.post("/signin", (req, res, next) => {
     let getUser;
     userSchema.findOne({
         email: req.body.email

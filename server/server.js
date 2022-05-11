@@ -13,15 +13,11 @@ const{connect}= require("./api/utils/database/connect");
 // routes
 const user=require("./api/routes/user-routes");
 //error
-
 const HTTPSTATUSCODE= require ("./api/utils/httpStatusCode");   
 //port to use server
 PORT=3000 || 4000;
 
-//use express
- const api= express();
-
- //to use database with server
+//to use database with server
  connect();
 
 // express configutration
@@ -33,23 +29,23 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 // to indicate routes to use
 app.use('/public', express.static('public'));
-app.use('/api', api)
-app.use('/server/api/routes/user.routes.js',user)
+app.use('/user',user)
+
 //use morgan
- api.use(logger("dev"));
+ app.use(logger("dev"));
 
 //error control
-api.use((_req,_res,next)=>{
+app.use((_req,_res,next)=>{
     let err= new Error;
     err.status = 404;
     err.message= HTTPSTATUSCODE[404];
     next(err);
 });
-api.use((err, req,res,next)=>{
+app.use((err, req,res,next)=>{
     return res.status(err.status||500).json(err.message||"unexpected error");
 });
 
  
-api.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running in http://localhost:${PORT}`);
 });
