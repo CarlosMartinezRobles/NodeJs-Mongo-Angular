@@ -22,8 +22,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       name: ['',Validators.required,], //validations optional better like back requires(user.routes.js) to put more secure in our app 
       email: ['',Validators.email, Validators.required],
-      password: ['',Validators.required, Validators.minLength(4), Validators.maxLength(12)],
-      emoji: ['']
+      password: ['',Validators.required, Validators.minLength(4), Validators.maxLength(12)],      
   })
   }
 
@@ -31,7 +30,7 @@ export class RegisterComponent implements OnInit {
     this.AuthService.register(this.registerForm?.value).subscribe((res:any)=>{
     if(res.result){
     this.registerForm?.reset();
-    this.router.navigate(['sign-in'])
+    this.router.navigate(['signin'])
   }
 })}
 }
