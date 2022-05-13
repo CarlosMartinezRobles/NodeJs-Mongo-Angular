@@ -5,10 +5,11 @@ const routes: Routes = [
   {
     path: 'register', loadChildren: () =>
       import('./features/register/register.module').then(m => m.RegisterModule),
-       //Con esto protegemos esta ruta
+      //Con esto protegemos esta ruta
+
   },
   {
-    path: 'sign-in', loadChildren: () =>
+    path: 'signin', loadChildren: () =>
       import('./features/sigin/sig-in.module').then(m => m.SigInModule)
   }
 ];

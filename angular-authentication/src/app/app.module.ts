@@ -15,11 +15,11 @@ import { MenuComponent } from './core/components/menu/menu.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+  
+ 
     
   ],
-  providers: [
-    FormGroup,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
