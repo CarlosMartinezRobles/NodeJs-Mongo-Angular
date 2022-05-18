@@ -39,7 +39,8 @@ export class AuthService {
     }
   } 
   public isLoggedIn(): boolean {
-    return localStorage.getItem('access_token') !=null ? true : false;
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
   }
   getUserProfile(id: string): Observable<any> {
     let api = `${this.endpoint}/user-profile/${id}`;
