@@ -41,4 +41,3 @@ export class RegisterComponent implements OnInit {
 })}
 }
 
-//video 1.2 min 49:14
