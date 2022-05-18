@@ -32,3 +32,8 @@ import { AuthInterceptor } from './core/services/interceptors/auth.config.interc
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+// video 3 min 16:46:
